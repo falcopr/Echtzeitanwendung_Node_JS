@@ -1,0 +1,6 @@
+bin/
+build/
+images/
+node_modules/
+meinvolume/
+obj/
