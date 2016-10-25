@@ -8,7 +8,8 @@ LABEL description="This is a image for installing a realtime node application in
 
 ENV "SERVERDIR"="/home/server"
 ENV "EXTERNALS"=$SERVERDIR/externals
-ENV "TERM"="dumb"
+ENV "TERM"="xterm"
+#ENV "TERM"="dumb"
 #ENV "COUCHDB_VERSION"="2.0.0"
 
 WORKDIR $SERVERDIR
@@ -16,7 +17,7 @@ WORKDIR $SERVERDIR
 VOLUME $EXTERNALS
 
 RUN pacman -Syy --noconfirm && pacman -S npm nodejs git couchdb --noconfirm`
-    && pacman -S iproute2 net-tools --noconfirm
+    && pacman -S screen iproute2 net-tools --noconfirm
 
 #Clearing cached packages and its index
 RUN pacman -Scc --noconfirm
@@ -32,6 +33,8 @@ RUN ./install_server.sh &&`
 # HTTP, HTTPS, CouchDB
 EXPOSE 80 443 5984 5986
 
+COPY ./config/couchdb.sh .
+COPY ./config/realtimeapp.sh .
 COPY ./config/entrypoint.sh .
 ENTRYPOINT ["./entrypoint.sh"]
 # ENTRYPOINT ["top", "-b"]

@@ -2,7 +2,9 @@
 
 ## Vorab Bemerkungen
 * Spielplatz zum Ausprobieren von Docker
-* Läuft auf ARCH LINUX-Basis zum
+* Läuft auf ARCH LINUX-Basis und holt dich ARCH-Packages
+** Besser wäre ein GET vom Source-Code und Selbstkompilieren/Konfigurieren
+** Es gibt bessere Distributionen zum Hosten von Anwendungen/DBs
 * Kein korrektes Usermanagement (Ausführender Nutzer ist root)
 
 ## Installation und Ausführung
@@ -29,6 +31,14 @@ docker rm $(docker ps -q -f status=exited)
 #### Löschen aller Images
 
 docker rmi $(docker images -q) -f
+
+#### Terminal Multiplexing in Docker
+
+[Docker tty is not a tty with docker exec](https://github.com/docker/docker/issues/8755)
+
+docker exec -it realtimeapp script -q -c "/bin/bash" /dev/null
+
+[What's the difference between various $TERM variables?](http://unix.stackexchange.com/questions/43945/whats-the-difference-between-various-term-variables)
 
 ### Docker mit Windows und Powershell
 

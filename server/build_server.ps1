@@ -13,5 +13,6 @@ $DOCKERFILEPATH="./Dockerfile"
 
 New-Item -ErrorAction Ignore -ItemType directory -Path "externals/db"
 New-Item -ErrorAction Ignore -ItemType directory -Path "externals/idx"
+New-Item -ErrorAction Ignore -ItemType directory -Path "externals/logs"
 
 & cd $CURRENTDIRECTORY

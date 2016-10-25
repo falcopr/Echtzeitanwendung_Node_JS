@@ -13,5 +13,6 @@ docker build -t $NAME -f $DOCKERFILEPATH .
 
 mkdir -p "externals/db"
 mkdir -p "externals/idx"
+mkdir -p "externals/logs"
 
 cd $CURRENTDIRECTORY
