@@ -54,6 +54,10 @@ docker exec -it realtimeapp script -q -c "/bin/bash" /dev/null
 
 ### Docker mit Windows und Powershell
 
+#### Powershell
+
+[Powershell functions are a different kind of beast](https://www.tigraine.at/2010/09/22/powershell-functions-are-a-different-kind-of-beast)
+
 #### Windows Mounts
 
 https://forums.docker.com/t/volume-mounts-in-windows-does-not-work/10693/7
