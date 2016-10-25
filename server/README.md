@@ -40,6 +40,18 @@ docker exec -it realtimeapp script -q -c "/bin/bash" /dev/null
 
 [What's the difference between various $TERM variables?](http://unix.stackexchange.com/questions/43945/whats-the-difference-between-various-term-variables)
 
+### Linux und GIT-Cheatsheets
+
+[Bash Redirections Cheat Sheet](http://www.catonmat.net/download/bash-redirections-cheat-sheet.pdf)
+
+[Sending Text Input To A Detached Screen](http://unix.stackexchange.com/questions/13953/sending-text-input-to-a-detached-screen)
+
+[GNU screen: print a detached session to stdout](http://unix.stackexchange.com/questions/63809/gnu-screen-print-a-detached-session-to-stdout)
+
+[Screen Manual](https://www.gnu.org/software/screen/manual/screen.html#Overview)
+
+[Screen Logging](http://www.softpanorama.org/Utilities/Screen/screen_logging.shtml)
+
 ### Docker mit Windows und Powershell
 
 #### Windows Mounts

@@ -43,3 +43,4 @@ images/
 node_modules/
 externals
 obj/
+logs/

@@ -19,5 +19,17 @@ then
   mv "$SHAREDDIR/$REALTIMEAPPLOG" "$LOGDIR/${CURRENTREALTIMEAPPLOGDATE}_${REALTIMEAPPLOG}"
 fi
 
-nohup /bin/bash -c $STARTUPSCRIPTSDIR/couchdb.sh &> "$SHAREDDIR/$COUCHDBLOG"&
-nohup /bin/bash $STARTUPSCRIPTSDIR/realtimeapp.sh &> "$SHAREDDIR/$REALTIMEAPPLOG"&
+screen kill realtimeapp
+screen kill couchdb
+
+screen -S realtimeapp -d -m /bin/bash
+screen -S realtimeapp -p 0 -X logfile "$SHAREDDIR/$REALTIMEAPPLOG"
+screen -S realtimeapp -p 0 -X logfile flush 2 "$SHAREDDIR/$REALTIMEAPPLOG"
+screen -S realtimeapp -p 0 -X log on
+screen -S realtimeapp -p 0 -X stuff "$STARTUPSCRIPTSDIR/realtimeapp.sh$(printf \\r)"
+
+screen -S couchdb -d -m /bin/bash
+screen -S couchdb -p 0 -X logfile "$SHAREDDIR/$COUCHDBLOG"
+screen -S couchdb -p 0 -X logfile flush 2 "$SHAREDDIR/$COUCHDBLOG"
+screen -S couchdb -p 0 -X log on
+screen -S couchdb -p 0 -X stuff "$STARTUPSCRIPTSDIR/couchdb.sh$(printf \\r)"
