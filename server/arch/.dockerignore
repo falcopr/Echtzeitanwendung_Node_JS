@@ -1,0 +1,5 @@
+# Put all ignored files for building in here
+  temp
+  build
+  images
+  meinvolume
