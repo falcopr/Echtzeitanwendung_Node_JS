@@ -1,9 +1,22 @@
 # SERVER
 
+## Vorab Bemerkungen
+* Spielplatz zum Ausprobieren von Docker
+* Läuft auf ARCH LINUX-Basis zum
+* Kein korrektes Usermanagement (Ausführender Nutzer ist root)
+
 ## Installation und Ausführung
 1. Installation von Docker für Windows
-2. Ausführen von build_server.sh/ps1
-3. Ausführen von start_server.sh/ps1
+2. (optional) Ausführen von setup_default_machine.sh/ps1
+3. Ausführen von build_server.sh/ps1
+4. Ausführen von start_server.sh/ps1
+
+## Benutzung der CouchDB
+1. Herausfinden der aktuellen IP der Maschine: docker-machine ip default (IP)
+2. Anwählen der Futon-Webanwendung (CouchDB-Web) unter der IP:5003 (Cluster-Mode) oder IP:5004 (Singlenode-Mode)
+3. Eingeben der Nutzerdaten
+* Benutername: root
+* Password: test123
 
 ## Entwicklung mit Docker und Node.js
 
@@ -26,7 +39,12 @@ https://forums.docker.com/t/volume-mounts-in-windows-does-not-work/10693/7
 https://github.com/docker/for-win/issues/25
 
 #### Docker Toolbox (Virtualbox-Drivers)
+
 https://github.com/docker/toolbox/releases/tag/v1.12.2
+
+[VBoxManage modifyvm](https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm)
+
+[Port-forwarding mit Virtualbox für Docker-Machines](http://stackoverflow.com/questions/36286305/how-do-i-forward-a-docker-machine-port-to-my-host-port-on-osx)
 
 #### Benutzen der Powershell als Standardshell für Docker
 [Benutzen der Powershell als Standardshell für Docker](https://github.com/docker/docker/issues/22338)

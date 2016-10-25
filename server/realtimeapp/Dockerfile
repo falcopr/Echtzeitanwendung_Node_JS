@@ -9,20 +9,21 @@ LABEL description="This is a image for installing a realtime node application in
 ENV "SERVERDIR"="/home/server"
 ENV "EXTERNALS"=$SERVERDIR/externals
 ENV "TERM"="dumb"
-ENV "COUCHDB_VERSION"="2.0.0"
+#ENV "COUCHDB_VERSION"="2.0.0"
 
 WORKDIR $SERVERDIR
 
 VOLUME $EXTERNALS
 
-RUN pacman -Syy --noconfirm && pacman -S npm nodejs git couchdb --noconfirm
-    # && pacman -S screen docker openssh iproute2 net-tools --noconfirm
+RUN pacman -Syy --noconfirm && pacman -S npm nodejs git couchdb --noconfirm`
+    && pacman -S iproute2 net-tools --noconfirm
 
 #Clearing cached packages and its index
 RUN pacman -Scc --noconfirm
 
 #Copy couchdb configuration
 COPY ./config/local.ini /etc/couchdb/local.ini
+COPY ./config/vm.args /etc/couchdb/vm.args
 
 COPY ./config/install_server.sh .
 RUN ./install_server.sh &&`

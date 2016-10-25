@@ -30,7 +30,7 @@ $COMMONPARAMS += "$PORTDB2"
 
 # Mounting Volume
 $COMMONPARAMS += "-v"
-$COMMONPARAMS += "/c/Users/PrescherFa/Projekte/Experiments/Docker/server/realtimeapp/externals:/home/server/externals:rw"
+$COMMONPARAMS += "/c/Users/PrescherFa/Projekte/Echtzeitanwendung_Node_JS/server/realtimeapp/externals:/home/server/externals:rw"
 
 #$COMMONPARAMS=("{0} {1} {2} {3}" -f `
 #"-m 500M --memory-reservation 200M --memory-swap 1G", `
@@ -43,9 +43,9 @@ Write-Host $COMMONPARAMS
 #docker rm $CONTAINERNAME
 
 # Interactive Mode
-Write-Host "Starting docker in interactive mode"
+# Write-Host "Starting docker in interactive mode"
 $DOCKERINTERACTIVEPARAMS = @("run", "-it", "--rm", "--entrypoint", "/bin/bash")
-& docker $DOCKERINTERACTIVEPARAMS $COMMONPARAMS $IMAGENAME
+# & docker $DOCKERINTERACTIVEPARAMS $COMMONPARAMS $IMAGENAME
 # --log-driver=json-file `
 # --log-opt max-size=3m `
 # --log-opt max-file=9
@@ -53,5 +53,5 @@ $DOCKERINTERACTIVEPARAMS = @("run", "-it", "--rm", "--entrypoint", "/bin/bash")
 
 # Detached Mode
 $DOCKERDETACHEDPARAMS =  @("run", "-d")
-#Write-Host "Starting docker in detached mode:"
-#&docker $DOCKERDETACHEDPARAMS $COMMONPARAMS $IMAGENAME
+Write-Host "Starting docker in detached mode:"
+&docker $DOCKERDETACHEDPARAMS $COMMONPARAMS $IMAGENAME

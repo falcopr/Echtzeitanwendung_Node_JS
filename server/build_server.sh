@@ -11,4 +11,7 @@ NAME="falco/realtimeapp:latest"
 DOCKERFILEPATH="./Dockerfile"
 docker build -t $NAME -f $DOCKERFILEPATH .
 
+mkdir -p "externals/db"
+mkdir -p "externals/idx"
+
 cd $CURRENTDIRECTORY

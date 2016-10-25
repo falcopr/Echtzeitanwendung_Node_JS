@@ -11,4 +11,7 @@ $NAME="falco/realtimeapp:latest"
 $DOCKERFILEPATH="./Dockerfile"
 & docker build -t $NAME -f $DOCKERFILEPATH .
 
+New-Item -ErrorAction Ignore -ItemType directory -Path "externals/db"
+New-Item -ErrorAction Ignore -ItemType directory -Path "externals/idx"
+
 & cd $CURRENTDIRECTORY
