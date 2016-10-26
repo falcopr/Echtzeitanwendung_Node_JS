@@ -49,6 +49,8 @@ echo $COMMONPARAMS
 # echo "Starting docker in interactive mode"
 # DOCKERINTERACTIVEPARAMS="run -it --rm --entrypoint /bin/bash"
 # docker $DOCKERINTERACTIVEPARAMS $COMMONPARAMS $IMAGENAME
+#DOCKERINTERACTIVEPARAMS="run -it --rm --user root --entrypoint /bin/bash"
+# DOCKERINTERACTIVEPARAMS="run -it --rm --user server --entrypoint /bin/bash"
 # --log-driver=json-file `
 # --log-opt max-size=3m `
 # --log-opt max-file=9

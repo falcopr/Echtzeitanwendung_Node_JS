@@ -5,7 +5,6 @@
 * Läuft auf ARCH LINUX-Basis und holt dich ARCH-Packages
 ** Besser wäre ein GET vom Source-Code und Selbstkompilieren/Konfigurieren
 ** Es gibt bessere Distributionen zum Hosten von Anwendungen/DBs
-* Kein korrektes Usermanagement (Ausführender Nutzer ist root)
 
 ## Installation und Ausführung
 1. Installation von Docker für Windows
@@ -23,6 +22,17 @@
 ## Entwicklung mit Docker und Node.js
 
 ### Docker-Cheatsheet für nützliche Commands
+
+#### Init von Linuxcontainer
+
+https://github.com/krallin/tini
+https://github.com/krallin/tini/issues/8
+
+#### Wechseln von User
+
+https://forums.docker.com/t/swiching-between-root-and-non-root-users-from-interactive-console/2269/3
+docker run --rm -it --name test --user 1000 debian bash
+docker exec -it --user root test bash
 
 #### Löschen aller beendeten Docker-Container
 
@@ -83,12 +93,20 @@ docker-machine env | Invoke-Expression
 
 docker-machine env --shell powershell default | Invoke-Expression
 
+### Correct way to detach from a container without stopping it
+
+http://stackoverflow.com/questions/25267372/correct-way-to-detach-from-a-container-without-stopping-it
+
 
 #### Localhost für Docker in Windows
 
 http://stackoverflow.com/questions/35372399/connect-to-docker-machine-using-localhost
 
 ### Entwicklung mit CouchDB
+
+#### CouchDB Definitive Guide
+
+http://guide.couchdb.org/
 
 #### CouchDB Single Node Setup
 
