@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "Start installing realtime app server"
+echo "Start installing realtime app node server"

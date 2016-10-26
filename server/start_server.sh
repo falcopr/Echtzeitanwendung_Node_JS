@@ -33,13 +33,7 @@ COMMONPARAMS+="$PORTDB2 "
 # Mounting Volume
 COMMONPARAMS+="-v "
 COMMONPARAMS+="$SCRIPTDIR/realtimeapp/externals:/home/server/externals:rw"
-#COMMONPARAMS+="/c/Users/PrescherFa/Projekte/Echtzeitanwendung_Node_JS/server/realtimeapp/externals:/home/server/externals:rw"
-
-#$COMMONPARAMS=("{0} {1} {2} {3}" -f `
-#"-m 500M --memory-reservation 200M --memory-swap 1G", `
-#"-p $PORTHTTP -p $PORTHTTPS -p $PORTDB", `
-#"-v C:\Users\PrescherFa\Projekte\Experiments\Docker\archlinux\meinvolume:/home/server/volume", `
-#"--name=$CONTAINERNAME")
+COMMONPARAMS+="/c/Users/PrescherFa/Projekte/Echtzeitanwendung_Node_JS/server/realtimeapp/externals:/home/server/externals:rw"
 
 echo $COMMONPARAMS
 

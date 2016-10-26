@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  arch:
+    image: falco/arch:latest
+    build:
+      context: ./arch
+      dockerfile: Dockerfile
+  couchdb:
+    image: falco/realtimeapp_db:latest
+    build:
+      context: ./realtimeapp_db
+      dockerfile: Dockerfile
+    ports:
+      - "5003:5984"
+      - "5004:5986"
+    depends_on:
+      - arch
+    volumes:
+      - /c/Users/PrescherFa/Projekte/Echtzeitanwendung_Node_JS/server/realtimeapp_db/externals:/home/server/externals:rw
+  node:
+    image: falco/realtimeapp_node:latest
+    build:
+      context: ./realtimeapp_node
+      dockerfile: Dockerfile
+    depends_on:
+      - couchdb
+    ports:
+      - "5001:80"
+      - "5002:443"
+    volumes:
+      - /c/Users/PrescherFa/Projekte/Echtzeitanwendung_Node_JS/server/realtimeapp_node/externals:/home/server/externals:rw

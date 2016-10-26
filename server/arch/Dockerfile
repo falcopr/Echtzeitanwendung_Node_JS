@@ -15,7 +15,8 @@ WORKDIR $SERVERDIR
 VOLUME $EXTERNALS
 
 #RUN pacman -S archlinux-keyring --noconfirm
-RUN pacman -Syu --noconfirm && RUN pacman -S fakeroot make cmake gcc vim screen git --noconfirm
+RUN pacman -Syu --noconfirm
+RUN pacman -S fakeroot make cmake gcc vim screen git --noconfirm
 
 RUN groupadd -r server &&`
     useradd -d $SERVERDIR -g server server &&`
@@ -31,7 +32,4 @@ RUN cd tini && pacman -U ./tini*.pkg.tar.xz --noconfirm && cd ../..
 #Clearing cached packages and its index
 RUN pacman -Scc --noconfirm && rm -R /var/cache/pacman/pkg && rm -R tini
 
-ENTRYPOINT ["/bin/bash"]
-# ENTRYPOINT ["top", "-b"]
-# RUN cat /test.txt
-# RUN echo 'Test'
+ENTRYPOINT ["/bin/bash", "-c"]
