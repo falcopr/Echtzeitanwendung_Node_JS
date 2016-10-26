@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  fluentd:
+    image: fluent/fluentd:v0.14.8
+    ports:
+      - "24224:24224"
+    volumes:
+      - ${LOGDIR}:/fluentd/log
+      - ${FLUENTDCONFIGDIR}:/fluentd/etc
+    command: fluentd -c /fluentd/etc/fluentd.conf

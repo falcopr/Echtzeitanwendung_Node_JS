@@ -31,5 +31,3 @@ RUN cd tini && pacman -U ./tini*.pkg.tar.xz --noconfirm && cd ../..
 
 #Clearing cached packages and its index
 RUN pacman -Scc --noconfirm && rm -R /var/cache/pacman/pkg && rm -R tini
-
-ENTRYPOINT ["/bin/bash", "-c"]

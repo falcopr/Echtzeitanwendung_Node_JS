@@ -9,7 +9,8 @@
 ## Installation und Ausführung
 1. Installation von Docker für Windows
 2. Konfiguration der Volume-Pfade im docker-compose.yml
-3. docker-compose.sh/ps1 up/rm/down/build/start/stop
+3. Starten des Monitorings monitoring.sh/ps1 up [/rm/down/build/start/stop]
+3. Starten der Applikation application.sh/ps1 up [/rm/down/build/start/stop]
 
 ## Benutzung der CouchDB
 1. Herausfinden der aktuellen IP der Maschine: docker-machine ip default (IP)
