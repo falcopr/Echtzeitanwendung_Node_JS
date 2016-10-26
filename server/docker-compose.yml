@@ -17,7 +17,9 @@ services:
     depends_on:
       - arch
     volumes:
-      - /c/Users/PrescherFa/Projekte/Echtzeitanwendung_Node_JS/server/realtimeapp_db/externals:/home/server/externals:rw
+      - ${COUCHDBEXTERNALSVOLUMEDIR}:/home/server/externals:rw
+    mem_limit: 512M
+    memswap_limit: 1G
   node:
     image: falco/realtimeapp_node:latest
     build:
@@ -29,4 +31,5 @@ services:
       - "5001:80"
       - "5002:443"
     volumes:
-      - /c/Users/PrescherFa/Projekte/Echtzeitanwendung_Node_JS/server/realtimeapp_node/externals:/home/server/externals:rw
+      - ${NODEEXTERNALSVOLUMEDIR}:/home/server/externals:rw
+    mem_limit: 512M
