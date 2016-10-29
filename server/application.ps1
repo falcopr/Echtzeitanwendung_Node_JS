@@ -6,4 +6,4 @@ $RESULTINGUNIXSCRIPTDIR=($DRIVELETTER + ($SCRIPTDIR -replace "^/(.*?)/(.*?)$", '
 $env:COUCHDBEXTERNALSVOLUMEDIR="$RESULTINGUNIXSCRIPTDIR/realtimeapp_db/externals"
 $env:NODEEXTERNALSVOLUMEDIR="$RESULTINGUNIXSCRIPTDIR/realtimeapp_node/externals"
 
-& docker-compose -f application.yml $args
+& docker-compose -f applicationjsonfile.yml $args

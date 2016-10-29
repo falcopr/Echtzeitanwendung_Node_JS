@@ -14,20 +14,12 @@ services:
     ports:
       - "5003:5984"
       - "5004:5986"
-    depends_on:
-      - arch
     volumes:
-      - ${COUCHDBCONFIGVOLUMEDIR}:/etc/couchdb:rw
       - ${COUCHDBEXTERNALSVOLUMEDIR}:/home/server/externals:rw
     mem_limit: 512M
     memswap_limit: 1G
     logging:
-      driver: fluentd
-      #driver: json-file
-      options:
-        #fluentd-address: "localhost:24224"
-        tag: "docker.couchdb.{{.Name}}"
-        #fluentd-async-connect: "true"
+      driver: json-file
   node:
     image: falco/realtimeapp_node:latest
     build:
@@ -42,9 +34,4 @@ services:
       - ${NODEEXTERNALSVOLUMEDIR}:/home/server/externals:rw
     mem_limit: 512M
     logging:
-      driver: fluentd
-      #driver: json-file
-      options:
-        #fluentd-address: "localhost:24224"
-        tag: "docker.node.{{.Name}}"
-        #fluentd-async-connect: "true"
+      driver: json-file
