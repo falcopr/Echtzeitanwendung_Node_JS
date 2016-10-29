@@ -7,8 +7,8 @@ services:
       context: ./realtimeapp_db
       dockerfile: Dockerfile
     ports:
-      - "5003:5984"
-      - "5004:5986"
+      - "5984:5984"
+      - "5986:5986"
     volumes:
       - ${COUCHDBEXTERNALSVOLUMEDIR}:/home/server/externals:rw
     mem_limit: 512M
@@ -23,8 +23,8 @@ services:
     depends_on:
       - couchdb
     ports:
-      - "5001:80"
-      - "5002:443"
+      - "80:80"
+      - "443:443"
     volumes:
       - ${NODEEXTERNALSVOLUMEDIR}:/home/server/externals:rw
     mem_limit: 512M

@@ -14,10 +14,11 @@
 1. Konfiguration der Volume-Pfade im docker-compose.yml
 2. Starten des Monitorings monitoring.sh/ps1 up [/rm/down/build/start/stop]
 3. Starten der Applikation application.sh/ps1 up [/rm/down/build/start/stop]
+4. Bei initialem CouchDB-Setup das Skript /realtimeapp_db/config/dbsetup.sh ausführen 
 
 ## Benutzung der CouchDB
 1. Herausfinden der aktuellen IP der Maschine: docker-machine ip default (IP)
-2. Anwählen der Futon-Webanwendung (CouchDB-Web) unter der IP:5003 (Cluster-Mode) oder IP:5004 (Singlenode-Mode)
+2. Anwählen der Futon-Webanwendung (CouchDB-Web) unter der IP:5984 (Cluster-Mode) oder IP:5986 (Singlenode-Mode)
 3. Eingeben der Nutzerdaten
 * Benutername: root
 * Password: test123
