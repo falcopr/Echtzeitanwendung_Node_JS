@@ -1,11 +1,6 @@
 version: '2'
 
 services:
-  arch:
-    image: falco/arch:latest
-    build:
-      context: ./arch
-      dockerfile: Dockerfile
   couchdb:
     image: falco/realtimeapp_db:latest
     build:

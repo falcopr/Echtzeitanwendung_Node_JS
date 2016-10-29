@@ -1,11 +1,6 @@
 version: '2'
 
 services:
-  arch:
-    image: falco/arch:latest
-    build:
-      context: ./arch
-      dockerfile: Dockerfile
   couchdb:
     image: falco/realtimeapp_db:latest
     build:
@@ -14,8 +9,6 @@ services:
     ports:
       - "5003:5984"
       - "5004:5986"
-    depends_on:
-      - arch
     volumes:
       - ${COUCHDBCONFIGVOLUMEDIR}:/etc/couchdb:rw
       - ${COUCHDBEXTERNALSVOLUMEDIR}:/home/server/externals:rw
