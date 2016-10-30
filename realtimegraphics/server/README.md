@@ -6,7 +6,7 @@
 ** Besser wäre ein GET vom Source-Code und Selbstkompilieren/Konfigurieren
 ** Es gibt bessere Distributionen zum Hosten von Anwendungen/DBs
 
-## Prerequisiten
+## Erstellen der Basisimage (Archlinux)
 1. Installation von Docker für Windows
 2. Installation der Archlinux-Image im /server/arch Ordner mittels build.sh/ps1
 
@@ -14,7 +14,7 @@
 1. Konfiguration der Volume-Pfade im docker-compose.yml
 2. Starten des Monitorings monitoring.sh/ps1 up [/rm/down/build/start/stop]
 3. Starten der Applikation application.sh/ps1 up [/rm/down/build/start/stop]
-4. Bei initialem CouchDB-Setup das Skript /realtimeapp_db/config/dbsetup.sh ausführen 
+4. Bei initialem CouchDB-Setup(DMS) das Skript /realtimeapp_db/config/dbsetup.sh ausführen
 
 ## Benutzung der CouchDB
 1. Herausfinden der aktuellen IP der Maschine: docker-machine ip default (IP)
