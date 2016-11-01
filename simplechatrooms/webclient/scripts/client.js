@@ -1,28 +1,69 @@
-'use strict';
+let chat;
+(chat = (manager, $, _) => {
+  "use strict";
 
-(function() {
-  var socket = io('http://localhost:3000/');
-  var currentRoom = '#root';
+  let socket = manager.connect(
+        'http://localhost:3000/',
+        {
+          reconnection: true,
+          reconnectionDelay: 1000
+        }),
+      myuserid = '';
 
-  socket.on('connect', function() { console.log("You are connected to the chat!") });
+  let appendToChatLog = (msg, userid) => {
+    let isItMe = userid === myuserid;
+    let fontweight = isItMe ? 'bold' : 'normal';
+    $('#messages')
+      .append($(`<li style='font-weight:${fontweight};'>`)
+      .text(`${userid}: ${msg}`));
+    if (isItMe) {
+      $('#message').val('');
+    }
+  };
 
-  $('form').submit(function(){
+  // var currentRoom = '#root';
+  // $('#rooms').on('click', 'a', function onclickHandler(e) {
+  //   socket.leave(currentRoom);
+  //   currentRoom = $(e.target).attr('href');
+  //   socket.emit('join_room', { room: currentRoom })
+  // });
+
+  socket.on(
+    'connect',
+    function serverConnected() {
+      appendToChatLog('You are connected to the chat!', 'Server');
+    });
+
+  socket.on(
+    'client:getuserid',
+    function gotUserId(data) {
+      myuserid = data.socketid;
+      appendToChatLog(`You've got the client id ${myuserid}!`, 'Server');
+    });
+
+  $('form').submit(function submittedForm() {
     var msg = $('#message').val();
-    socket.emit('send_chat_message_from_client', msg);
-    $('#messages').append($('<li>').text('Ich: ' + msg));
-    $('#message').val('');
+    socket.emit('client:sendmsg', msg);
+    appendToChatLog(`${msg}`, myuserid);
     return false;
   });
 
-  $('#rooms').on('click', 'a', function onclickHandler(e) {
-    socket.leave(currentRoom);
-    currentRoom = $(e.target).attr('href');
-    socket.emit('join_room', { room: currentRoom })
-  });
+  socket.on(
+    'server:receivemsg',
+    function receivedMsgFromServer(data) {
+      appendToChatLog(`${data.msg}`, data.userid);
+    });
 
-  socket.join(currentRoom);
+  socket.on(
+    'disconnect',
+    function serverDisconnected() {
+      appendToChatLog('Server disconnected. Trying to reconnect...', 'Server');
+    });
 
-  socket.on('receive_chat_message_from_server', function(msg){
-    $('#messages').append($('<li>').text('Anderer:' + msg));
-  });
-})();
+  socket.on(
+    'reconnect',
+    function serverReconnected() {
+      appendToChatLog('You are reconnected to the chat!', 'Server');
+    });
+
+}).call(chat, io, $, _);

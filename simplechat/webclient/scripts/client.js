@@ -12,7 +12,7 @@ let chat;
 
   let appendToChatLog = (msg, userid) => {
     let isItMe = userid === myuserid;
-    let fontweight = userid === myuserid ? 'bold' : 'normal';
+    let fontweight = isItMe ? 'bold' : 'normal';
     $('#messages')
       .append($(`<li style='font-weight:${fontweight};'>`)
       .text(`${userid}: ${msg}`));

@@ -2,11 +2,10 @@
 
 console.log('Server started!');
 
-// http://socket.io/docs/
-let port = 3000;
-let Server = require('socket.io');
-let io = new Server(port);
-console.log(`listening on *:${port}`);
+let port = 3000,
+    Server = require('socket.io'),
+    io = new Server(port);
+console.log(`Listening on *:${port}`);
 
 io.on(
   'connection',

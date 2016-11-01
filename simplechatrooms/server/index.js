@@ -1,29 +1,44 @@
 'use strict';
 
+console.log('Server started!');
 
-
-// http://socket.io/docs/
 let port = 3000,
     Server = require('socket.io'),
-    io = new Server(port),
-    _ = require('lodash');
+    io = new Server(port);
+console.log(`Listening on *:${port}`);
 
+io.on(
+  'connection',
+  function clientConnected(socket) {
+    console.log(`The client ${socket.id} connected`);
+    socket.emit('client:getuserid', { socketid: socket.id });
 
-console.log('Server started!');
-console.log(`listening on *:${port}`);
+    socket.broadcast.emit(
+      'server:receivemsg',
+      {
+        userid: 'Server',
+        msg: `Client ${socket.id} joined the chat.`
+      });
 
-io.on('connection', socket => {
-  console.log('A client connected');
+    socket.on(
+      'client:sendmsg',
+      function receivedClientMsg(msg) {
+        console.log(`${socket.id}: ${msg}`);
+        socket.broadcast.emit('server:receivemsg', { msg: msg, userid: socket.id });
+      });
 
-  socket.on('send_chat_message_from_client', msg => {
-     console.log(`message: ${msg}`);
-
-     //io.emit('receive_chat_message_from_server', msg);
-     socket.broadcast.emit('receive_chat_message_from_server', msg);
+    socket.on(
+      'disconnect',
+      function clientDisconnected() {
+        console.log(`The client ${socket.id} disconnected`);
+        socket.broadcast.emit(
+          'server:receivemsg',
+          {
+            userid: 'Server',
+            msg: `Client ${socket.id} left the chat.`
+          });
+      });
   });
-
-  socket.on('disconnect', () => console.log('A client disconnected'));
-});
 
 // http://stackoverflow.com/questions/6958780/quitting-node-js-gracefully
 process.on('SIGINT', () => {
