@@ -10,14 +10,14 @@ let reader = rl.createInterface({
 
 console.log('Chat client started!\n');
 
-let socket = io_client.connect('http://127.0.0.1:3000');
+let socket = io_client.connect('http://localhost:3000');
 
-socket.on('receive_chat_message_from_server', msg => console.log(`\nAndere: ${msg}`));
+socket.on('server:receivemsg', data => console.log(`\nAndere: ${data.msg}`));
 
 // Message
 let questionRecursively = function() {
   reader.question('Ich: ', msg => {
-    socket.emit('send_chat_message_from_client', msg);
+    socket.emit('client:sendmsg', msg);
     questionRecursively();
   });
 };

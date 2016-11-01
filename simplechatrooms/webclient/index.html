@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Simple Chat With Rooms</title>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <div class="rooms container">
+      <ul id="rooms">
+        <li id="root"><a href="#root">Root</a></li>
+        <li id="room1"><a href="#room1">Room #1</a></li>
+        <li id="room2"><a href="#room2">Room #2</a></li>
+        <li id="room3"><a href="#room3">Room #3</a></li>
+      </ul>
+    </div>
+    <form action="">
+      <input id="message" autocomplete="off" />
+      <button>Send</button>
+    </form>
+    <script src="http://localhost:8080/socket.io.min.js"></script>
+    <script src="http://localhost:8080/jquery.min.js"></script>
+    <script src="http://localhost:8080/lodash.min.js"></script>
+    <script src="http://localhost:8080/client.js"></script>
+  </body>
+</html>

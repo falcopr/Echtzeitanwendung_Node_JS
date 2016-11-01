@@ -22,22 +22,59 @@ form input {
     border: 0;
     font-size: 1em;
     padding: 10px;
-    width: 90%;
+    width: 87%;
     margin-right: .5%;
 }
 
 form button {
     font-size: 1em;
-    width: 9%;
+    width: 12%;
     background: rgb(255, 153, 0);
     border: none;
     padding: 10px;
+}
+
+.rooms.container {
+  padding: 0px 0px 0px 3px;
+}
+
+#rooms {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  width: 13%;
+  height: 100%;
+  right: 0;
+  text-align: center;
+  background-color: rgb(0, 51, 102);
+}
+
+#rooms > li {
+  height: 2.5em;
+}
+
+#rooms > li > a {
+  color: rgb(227, 227, 227);
+}
+
+/*#rooms > li > a:visited {
+  color: rgb(167, 167, 167);
+}*/
+
+#rooms > li > a:hover {
+  color: rgb(187, 187, 187);
+}
+
+#rooms > li > a:visited {
+  color: rgb(167, 167, 167);
 }
 
 #messages {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    width: 86%;
 }
 
 #messages li {
