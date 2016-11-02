@@ -13,22 +13,19 @@ io.on(
     console.log(`The client ${socket.id} connected`);
     socket.emit('client:getuserid', { socketid: socket.id });
 
-    socket.broadcast.emit(
-      'server:receivemsg',
+    socket.broadcast.emit('server:receivemsg',
       {
         userid: 'Server',
         msg: `Client ${socket.id} joined the chat.`
       });
 
-    socket.on(
-      'client:sendmsg',
+    socket.on('client:sendmsg',
       function receivedClientMsg(msg) {
         console.log(`${socket.id}: ${msg}`);
         socket.broadcast.emit('server:receivemsg', { msg: msg, userid: socket.id });
       });
 
-    socket.on(
-      'disconnect',
+    socket.on('disconnect',
       function clientDisconnected() {
         console.log(`The client ${socket.id} disconnected`);
         socket.broadcast.emit(

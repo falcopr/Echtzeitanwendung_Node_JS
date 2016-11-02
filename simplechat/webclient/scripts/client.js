@@ -21,19 +21,6 @@ let chat;
     }
   };
 
-  socket.on(
-    'connect',
-    function serverConnected() {
-      appendToChatLog('You are connected to the chat!', 'Server');
-    });
-
-  socket.on(
-    'client:getuserid',
-    function gotUserId(data) {
-      myuserid = data.socketid;
-      appendToChatLog(`You've got the client id ${myuserid}!`, 'Server');
-    });
-
   $('form').submit(function submittedForm() {
     var msg = $('#message').val();
     socket.emit('client:sendmsg', msg);
@@ -41,20 +28,28 @@ let chat;
     return false;
   });
 
-  socket.on(
-    'server:receivemsg',
+  socket.on('connect',
+    function serverConnected() {
+      appendToChatLog('You are connected to the chat!', 'Server');
+    });
+
+  socket.on('client:getuserid',
+    function gotUserId(data) {
+      myuserid = data.socketid;
+      appendToChatLog(`You've got the client id ${myuserid}!`, 'Server');
+    });
+
+  socket.on('server:receivemsg',
     function receivedMsgFromServer(data) {
       appendToChatLog(`${data.msg}`, data.userid);
     });
 
-  socket.on(
-    'disconnect',
+  socket.on('disconnect',
     function serverDisconnected() {
       appendToChatLog('Server disconnected. Trying to reconnect...', 'Server');
     });
 
-  socket.on(
-    'reconnect',
+  socket.on('reconnect',
     function serverReconnected() {
       appendToChatLog('You are reconnected to the chat!', 'Server');
     });
