@@ -2,8 +2,7 @@
 
 let express = require('express'),
     app = express(),
-    http = require('http').Server(app),
-    fs = require('fs');
+    http = require('http').Server(app);
 
 app.get('/', (request, response) => response.sendFile(`${__dirname}/index.html`));
 
