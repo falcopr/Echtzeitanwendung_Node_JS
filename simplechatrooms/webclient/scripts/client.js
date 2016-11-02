@@ -67,7 +67,7 @@ let chat;
   chatSocket.on(
     'client:getuserid',
     function gotUserId(data) {
-      myuserid = data.defaultSocketid;
+      myuserid = data.socketid;
       appendToChatLog(`You've got the client id ${myuserid}!`, 'Server');
     });
 

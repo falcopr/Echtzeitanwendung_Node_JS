@@ -4,10 +4,11 @@ console.log('Server started!');
 
 let port = 3000,
     Server = require('socket.io'),
-    io = new Server(port);
+    io = new Server(port),
+    chatNamespace = io.of('/chat');
 console.log(`Listening on *:${port}`);
 
-io.on(
+chatNamespace.on(
   'connect',
   function clientConnected(socket) {
     console.log(`The client ${socket.id} connected`);
