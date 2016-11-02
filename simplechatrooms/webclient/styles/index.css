@@ -10,22 +10,23 @@ body {
     background: rgb(227, 227, 227)
 }
 
-form {
+.message {
     background: rgb(0, 51, 102);
     position: absolute;
     bottom: 0;
     width: 100%;
     padding: 3px 0px 3px 0px;
+    z-index: 30;
 }
 
-form #divMessage {
+.message .input-message {
     border: none;
     width: 85%;
     display: block;
     float: left;
 }
 
-form #divMessage input {
+.message .input-message input {
     border: 0;
     font-size: 1em;
     width: 100%;
@@ -33,7 +34,7 @@ form #divMessage input {
     padding: 10px;
 }
 
-form #divSend {
+.message .btn-send {
     font-size: 1em;
     width: 15%;
     background: rgb(255, 153, 0);
@@ -42,7 +43,7 @@ form #divSend {
     float: left;
 }
 
-form #divSend button {
+.message .btn-send button {
     font-size: 1em;
     width: 100%;
     background: rgb(255, 153, 0);
@@ -51,7 +52,11 @@ form #divSend button {
     padding: 10px;
 }
 
-.rooms.container {
+.message .btn-send button:active {
+    background: rgb(225, 123, 0);
+}
+
+.rooms {
     width: 15%;
     height: 100%;
     position: absolute;
@@ -60,9 +65,10 @@ form #divSend button {
     background-color: rgb(0, 51, 102);
     padding: 0 0 0 3px;
     box-sizing: content-box;
+    z-index: 20;
 }
 
-.rooms.container #rooms {
+.rooms ul {
     list-style-type: none;
     position: relative;
     padding-top: 10px;
@@ -71,28 +77,39 @@ form #divSend button {
     text-align: center;
 }
 
-.rooms.container #rooms>li {
+.rooms  ul > li {
     height: 2.5em;
 }
 
-.rooms.container #rooms>li>a {
+.rooms ul > li > a {
     color: rgb(227, 227, 227);
 }
 
-
-/*#rooms > li > a:visited {
-  color: rgb(167, 167, 167);
-}*/
-
-#rooms>li>a:hover {
+.rooms ul > li > a:hover {
     color: rgb(187, 187, 187);
 }
 
-#rooms>li>a:visited {
+.rooms ul > li > a:visited {
     color: rgb(167, 167, 167);
 }
 
-.messages.container {
+.notification > div {
+    text-align: center;
+}
+
+.notification > div > button {
+  font-size: 1em;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: rgb(0, 158, 236);
+}
+
+.notification > div > button:active {
+  background-color: rgb(0, 138, 216);
+}
+
+.messages {
     margin: 0;
     padding: 0;
     width: 85%;
@@ -100,26 +117,51 @@ form #divSend button {
     padding-right: 3px;
 }
 
-.messages.container .scrollable {
-    position: relative;
-    overflow-y: auto;
-}
-
-#messages {
+.messages ul {
     list-style-type: none;
     position: relative;
     width: 100%;
 }
 
-#messages li {
+.messages ul li {
     padding: 5px 10px;
 }
 
-#messages li:nth-child(odd) {
+.messages ul li:nth-child(odd) {
     background: rgb(187, 187, 187);
 }
 
-.container .row > div {
+.mails {
+    margin: 0;
+    padding: 0;
+    width: 85%;
+    position: absolute;
+    padding-right: 3px;
+    display: none;
+    z-index: 10;
+    background: rgb(227, 227, 227);
+}
+
+.mails ul {
+    list-style-type: none;
+    position: relative;
+    width: 100%;
+}
+
+.mails li {
+    padding: 5px 10px;
+}
+
+.mails li:nth-child(odd) {
+    background: rgb(187, 187, 187);
+}
+
+.scrollable {
+    position: relative;
+    overflow-y: auto;
+}
+
+.container .row .column {
   padding-right: 3px;
   padding-left: 3px;
 }

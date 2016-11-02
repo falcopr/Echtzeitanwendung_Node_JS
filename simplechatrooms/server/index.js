@@ -3,9 +3,11 @@
 console.log('Server started!');
 
 let port = 3000,
+    _ = require('lodash'),
     Server = require('socket.io'),
     io = new Server(port),
-    chatNamespace = io.of('/chat');
+    chatNamespace = io.of('/chat'),
+    mailNamespace = io.of('/mail');
 console.log(`Listening on *:${port}`);
 
 chatNamespace.on(
@@ -65,13 +67,33 @@ chatNamespace.on(
 
     socket.on('disconnect',
       function clientDisconnected() {
-        console.log(`The client ${socket.id} disconnected`);
+        console.log(`The client ${socket.id} disconnected from chat.`);
         socket.broadcast.to(currentRoomName).emit(
           'server:receivemsg',
           {
             userid: 'Server',
             msg: `Client ${socket.id} left the chat.`
           });
+      });
+  });
+
+mailNamespace.on(
+  'connect',
+  function clientConnected(socket) {
+    console.log(`The client ${socket.id} connected to the mail server.`);
+
+    let sendMailTimer = setInterval(() =>  {
+      socket.emit('server:receivemail', {
+        head: 'Test E-Mail-Versand',
+        body: `Nachricht mit einer UID: ${_.uniqueId()}`
+      });
+      console.log(`Send mail to client ${socket.id}.`);
+    }, 10000);
+
+    socket.on('disconnect',
+      function clientDisconnected() {
+        console.log(`The client ${socket.id} disconnected from mail server.`);
+        clearInterval(sendMailTimer);
       });
   });
 
