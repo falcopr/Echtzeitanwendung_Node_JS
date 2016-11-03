@@ -1,0 +1,20 @@
+{
+  "name": "SimpleConsoleChatClient",
+  "version": "0.0.1",
+  "description": "A simple console chat client",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "Chat",
+    "Client",
+    "Simple"
+  ],
+  "author": "Falco Prescher",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io-client": "^1.3.7",
+    "yargs": "^6.3.0"
+  }
+}
