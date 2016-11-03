@@ -90,8 +90,8 @@ mailNamespace.on(
 
     let sendMailTimer = setInterval(() =>  {
       socket.emit('server:receivemail', {
-        head: 'Test E-Mail-Versand',
-        body: `Nachricht mit einer UID: ${_.uniqueId()}`
+        head: `Sending an E-Mail to ${socket.id}`,
+        body: `Message with an UID: ${_.uniqueId()}`
       });
       console.log(`Send mail to client ${socket.id}.`);
     }, 10000);

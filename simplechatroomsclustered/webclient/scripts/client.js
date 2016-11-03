@@ -116,7 +116,7 @@ let mail;
     } else {
       mailLog
         .append($(`<li>`)
-        .text(`Betreff: ${mail.head}, Nachricht: ${mail.body}`));
+        .text(`Subject: ${mail.head}, Body: ${mail.body}`));
     }
   };
 
