@@ -29,6 +29,8 @@ services:
       - back
   proxyandloadbalancer:
     image: nginx:latest
+    volumes:
+      - ${PROXYANDLOADBALANCERDIR}:/etc/nginx:rw
     mem_limit: 128M
     ports:
       - "81:81"
@@ -40,8 +42,6 @@ services:
   messagebus:
     image: redis:latest
     mem_limit: 512M
-    ports:
-      - "6379:6379"
     networks:
       - back
 

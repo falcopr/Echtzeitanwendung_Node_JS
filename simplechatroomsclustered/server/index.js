@@ -5,9 +5,7 @@ console.log('Server started!');
 let argv = require('yargs')
   .usage('Usage: $0 -port [num] -redis [num] -redisaddress [string]')
   .alias('p', 'port')
-  .alias('rp', 'redisport')
-  .alias('ra', 'redisaddress')
-  .default({ port: 81, redisport: 6379, redisaddress: 'localhost' })
+  .default({ port: 81, redisport: 6379, redisaddress: 'simplechatroomsclustered_messagebus_1' })
   .argv;
 
 let port = argv.port,
@@ -15,7 +13,7 @@ let port = argv.port,
     redis = require('socket.io-redis'),
     Server = require('socket.io'),
     io = new Server(port);
-
+///console.log(argv.redisaddress);
 io.adapter(redis({ host: argv.redisaddress, port: argv.redisport }))
 
 let chatNamespace = io.of('/chat'),

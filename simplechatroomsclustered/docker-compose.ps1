@@ -5,5 +5,7 @@ $RESULTINGUNIXSCRIPTDIR=($DRIVELETTER + ($SCRIPTDIR -replace "^/(.*?)/(.*?)$", '
 
 $env:WEBCLIENTDIR="$RESULTINGUNIXSCRIPTDIR/webclient"
 $env:SERVERDIR="$RESULTINGUNIXSCRIPTDIR/server"
+$env:PROXYANDLOADBALANCERDIR="$RESULTINGUNIXSCRIPTDIR/proxyandloadbalancer"
+$env:MESSAGEBUSDIR="$RESULTINGUNIXSCRIPTDIR/messagebus"
 
 & docker-compose -f docker-compose.yml $args
