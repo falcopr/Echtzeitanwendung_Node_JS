@@ -7,19 +7,46 @@ services:
       - "80:80"
     volumes:
       - ${WEBCLIENTDIR}:/usr/src/app:rw
-    mem_limit: 256M
+    mem_limit: 128M
     working_dir: /usr/src/app
     entrypoint: node index.js -p 80
     logging:
       driver: json-file
+    networks:
+      - front
   websocketserver:
     image: node:latest
-    ports:
-      - "81:81"
     volumes:
       - ${SERVERDIR}:/usr/src/app:rw
     working_dir: /usr/src/app
     entrypoint: node index.js -p 81
+    depends_on:
+      - messagebus
     mem_limit: 256M
     logging:
       driver: json-file
+    networks:
+      - back
+  proxyandloadbalancer:
+    image: nginx:latest
+    mem_limit: 128M
+    ports:
+      - "81:81"
+    depends_on:
+      - websocketserver
+    networks:
+      - back
+      - front
+  messagebus:
+    image: redis:latest
+    mem_limit: 512M
+    ports:
+      - "6379:6379"
+    networks:
+      - back
+
+networks:
+  front:
+    driver: bridge
+  back:
+    driver: bridge

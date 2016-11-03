@@ -3,19 +3,25 @@
 console.log('Server started!');
 
 let argv = require('yargs')
-  .usage('Usage: $0 -port [num]')
+  .usage('Usage: $0 -port [num] -redis [num] -redisaddress [string]')
   .alias('p', 'port')
-  .default({ port: 81 })
+  .alias('rp', 'redisport')
+  .alias('ra', 'redisaddress')
+  .default({ port: 81, redisport: 6379, redisaddress: 'localhost' })
   .argv;
 
 let port = argv.port,
     _ = require('lodash'),
+    redis = require('socket.io-redis'),
     Server = require('socket.io'),
-    io = new Server(port),
-    chatNamespace = io.of('/chat'),
-    mailNamespace = io.of('/mail');
-console.log(`Listening on *:${port}`);
+    io = new Server(port);
 
+io.adapter(redis({ host: argv.redisaddress, port: argv.redisport }))
+
+let chatNamespace = io.of('/chat'),
+    mailNamespace = io.of('/mail');
+
+console.log(`Listening on *:${port}`);
 chatNamespace.on(
   'connect',
   function clientConnected(socket) {
