@@ -10,7 +10,13 @@ let reader = rl.createInterface({
 
 console.log('Chat client started!\n');
 
-let socket = io_client.connect('http://localhost:3000');
+let argv = require('yargs')
+  .usage('Usage: $0 -port [num]')
+  .alias('p', 'port')
+  .default({ port: 81 })
+  .argv;
+let port = argv.port,
+    socket = io_client.connect(`http://localhost:${port}`);
 
 socket.on('server:receivemsg', data => console.log(`\nAndere: ${data.msg}`));
 

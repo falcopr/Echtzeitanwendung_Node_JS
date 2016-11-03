@@ -2,7 +2,13 @@
 
 console.log('Server started!');
 
-let port = 3000,
+let argv = require('yargs')
+  .usage('Usage: $0 -port [num]')
+  .alias('p', 'port')
+  .default({ port: 81 })
+  .argv;
+
+let port = argv.port,
     Server = require('socket.io'),
     io = new Server(port);
 console.log(`Listening on *:${port}`);

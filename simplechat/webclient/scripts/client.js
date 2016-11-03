@@ -3,7 +3,7 @@ let chat;
   "use strict";
 
   let socket = manager.connect(
-        'http://localhost:3000/',
+        'http://localhost:81/',
         {
           reconnection: true,
           reconnectionDelay: 1000
