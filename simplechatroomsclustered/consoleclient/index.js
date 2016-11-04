@@ -1,17 +1,23 @@
 'use strict';
 
-let io_client = require("socket.io-client");
+let io_client = require("socket.io-client"),
+    _ = require("lodash");
 
 console.log('Chat client started!\n');
 
 let argv = require('yargs')
-  .usage('Usage: $0 -port [num]')
+  .usage('Usage: $0 -port [num] -timermax [num] -timermin [num] -server [string]')
   .alias('p', 'port')
-  .default({ port: 81 })
+  .default({
+      port: 81,
+      server: 'simplechatroomsclustered_proxyandloadbalancer_1',
+      timermax: 20000,
+      timermin: 10000
+    })
   .argv;
 let port = argv.port,
     socket = io_client.connect(
-      `http://localhost:${port}/chat`,
+      `http://${argv.server}:${argv.port}/chat`,
       {
         reconnection: true,
         reconnectionDelay: 1000
@@ -36,7 +42,7 @@ socket.on('connect',
     sendMailTimer = setInterval(() =>  {
       socket.emit('client:sendmsg', `Message: ${generateUUID()}`);
       console.log(`Ich: ${generateUUID()}`);
-    }, 10000);
+    }, _.random(argv.timermin, argv.timermax));
   });
 
 socket.on('disconnect',
@@ -55,7 +61,7 @@ socket.on('reconnect',
     sendMailTimer = setInterval(() =>  {
       socket.emit('client:sendmsg', `Message: ${generateUUID()}`);
       console.log(`Me: ${generateUUID()}`);
-    }, 10000);
+    }, _.random(argv.timermin, argv.timermax));
   });
 
 socket.on('server:receivemsg', data => console.log(`\nYou: ${data.msg}`));

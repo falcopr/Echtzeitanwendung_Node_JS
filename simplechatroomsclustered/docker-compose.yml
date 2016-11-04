@@ -39,14 +39,78 @@ services:
     networks:
       - back
       - front
+      - client1
+      - client2
+      - client3
+      - client4
   messagebus:
     image: redis:latest
     mem_limit: 512M
     networks:
       - back
+  consoleclient1:
+    image: node:latest
+    volumes:
+      - ${CONSOLECLIENTDIR}:/usr/src/app:rw
+    working_dir: /usr/src/app
+    entrypoint: node index.js
+    depends_on:
+      - websocketserver
+    mem_limit: 128M
+    logging:
+      driver: json-file
+    networks:
+      - client1
+  consoleclient2:
+    image: node:latest
+    volumes:
+      - ${CONSOLECLIENTDIR}:/usr/src/app:rw
+    working_dir: /usr/src/app
+    entrypoint: node index.js
+    depends_on:
+      - websocketserver
+    mem_limit: 128M
+    logging:
+      driver: json-file
+    networks:
+      - client2
+  consoleclient3:
+    image: node:latest
+    volumes:
+      - ${CONSOLECLIENTDIR}:/usr/src/app:rw
+    working_dir: /usr/src/app
+    entrypoint: node index.js
+    depends_on:
+      - websocketserver
+    mem_limit: 128M
+    logging:
+      driver: json-file
+    networks:
+      - client3
+  consoleclient4:
+    image: node:latest
+    volumes:
+      - ${CONSOLECLIENTDIR}:/usr/src/app:rw
+    working_dir: /usr/src/app
+    entrypoint: node index.js
+    depends_on:
+      - websocketserver
+    mem_limit: 128M
+    logging:
+      driver: json-file
+    networks:
+      - client4
 
 networks:
   front:
     driver: bridge
   back:
+    driver: bridge
+  client1:
+    driver: bridge
+  client2:
+    driver: bridge
+  client3:
+    driver: bridge
+  client4:
     driver: bridge
