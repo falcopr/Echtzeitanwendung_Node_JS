@@ -1,3 +1,13 @@
+#Prerequisits
+1. cd consoleclient
+2. npm install
+
+3. cd server
+4. npm install
+
+5. cd webclient
+6. npm install
+
 #Get Started
 
 1. Start for building and setup ./docker-compose.sh/ps1 up
